@@ -52,70 +52,77 @@
             // outputText
             // 
             this.outputText.AutoSize = true;
-            this.outputText.Location = new System.Drawing.Point(12, 134);
+            this.outputText.Location = new System.Drawing.Point(9, 109);
+            this.outputText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(63, 17);
+            this.outputText.Size = new System.Drawing.Size(48, 13);
             this.outputText.TabIndex = 0;
             this.outputText.Text = "Output...";
             // 
             // gamesList
             // 
             this.gamesList.FormattingEnabled = true;
-            this.gamesList.ItemHeight = 16;
-            this.gamesList.Location = new System.Drawing.Point(12, 155);
+            this.gamesList.Location = new System.Drawing.Point(9, 126);
+            this.gamesList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gamesList.Name = "gamesList";
-            this.gamesList.Size = new System.Drawing.Size(297, 356);
+            this.gamesList.Size = new System.Drawing.Size(224, 290);
             this.gamesList.TabIndex = 1;
             // 
             // steamidInput
             // 
-            this.steamidInput.Location = new System.Drawing.Point(15, 27);
+            this.steamidInput.Location = new System.Drawing.Point(11, 22);
+            this.steamidInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.steamidInput.MaxLength = 17;
             this.steamidInput.Name = "steamidInput";
-            this.steamidInput.Size = new System.Drawing.Size(154, 22);
+            this.steamidInput.Size = new System.Drawing.Size(116, 20);
             this.steamidInput.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 7);
+            this.label1.Location = new System.Drawing.Point(9, 6);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 17);
+            this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Steam ID";
+            this.label1.Text = "Steam ID64";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 52);
+            this.label2.Location = new System.Drawing.Point(9, 42);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 17);
+            this.label2.Size = new System.Drawing.Size(75, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "PlayTime Filter";
             // 
             // hourInput
             // 
-            this.hourInput.Location = new System.Drawing.Point(15, 73);
+            this.hourInput.Location = new System.Drawing.Point(11, 59);
+            this.hourInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.hourInput.Name = "hourInput";
-            this.hourInput.Size = new System.Drawing.Size(22, 22);
+            this.hourInput.Size = new System.Drawing.Size(18, 20);
             this.hourInput.TabIndex = 5;
             this.hourInput.Text = "0";
             this.hourInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // minuteInput
             // 
-            this.minuteInput.Location = new System.Drawing.Point(61, 73);
+            this.minuteInput.Location = new System.Drawing.Point(46, 59);
+            this.minuteInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.minuteInput.Name = "minuteInput";
-            this.minuteInput.Size = new System.Drawing.Size(22, 22);
+            this.minuteInput.Size = new System.Drawing.Size(18, 20);
             this.minuteInput.TabIndex = 6;
             this.minuteInput.Text = "0";
             this.minuteInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // secondInput
             // 
-            this.secondInput.Location = new System.Drawing.Point(108, 73);
+            this.secondInput.Location = new System.Drawing.Point(81, 59);
+            this.secondInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.secondInput.Name = "secondInput";
-            this.secondInput.Size = new System.Drawing.Size(22, 22);
+            this.secondInput.Size = new System.Drawing.Size(18, 20);
             this.secondInput.TabIndex = 7;
             this.secondInput.Text = "0";
             this.secondInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -123,26 +130,29 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(43, 75);
+            this.label3.Location = new System.Drawing.Point(32, 61);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(12, 17);
+            this.label3.Size = new System.Drawing.Size(10, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = ":";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(90, 75);
+            this.label4.Location = new System.Drawing.Point(68, 61);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(12, 17);
+            this.label4.Size = new System.Drawing.Size(10, 13);
             this.label4.TabIndex = 9;
             this.label4.Text = ":";
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(12, 102);
+            this.startButton.Location = new System.Drawing.Point(9, 83);
+            this.startButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(157, 29);
+            this.startButton.Size = new System.Drawing.Size(118, 24);
             this.startButton.TabIndex = 10;
             this.startButton.Text = "Get Games";
             this.startButton.UseVisualStyleBackColor = true;
@@ -150,9 +160,10 @@
             // 
             // chooseButton
             // 
-            this.chooseButton.Location = new System.Drawing.Point(15, 517);
+            this.chooseButton.Location = new System.Drawing.Point(11, 420);
+            this.chooseButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chooseButton.Name = "chooseButton";
-            this.chooseButton.Size = new System.Drawing.Size(294, 48);
+            this.chooseButton.Size = new System.Drawing.Size(220, 39);
             this.chooseButton.TabIndex = 11;
             this.chooseButton.Text = "Choose!";
             this.chooseButton.UseVisualStyleBackColor = true;
@@ -161,10 +172,11 @@
             // randomGameBox
             // 
             this.randomGameBox.BackColor = System.Drawing.SystemColors.Window;
-            this.randomGameBox.Location = new System.Drawing.Point(15, 571);
+            this.randomGameBox.Location = new System.Drawing.Point(11, 464);
+            this.randomGameBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.randomGameBox.Name = "randomGameBox";
             this.randomGameBox.ReadOnly = true;
-            this.randomGameBox.Size = new System.Drawing.Size(294, 22);
+            this.randomGameBox.Size = new System.Drawing.Size(222, 20);
             this.randomGameBox.TabIndex = 12;
             // 
             // checkBox1
@@ -172,9 +184,10 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(170, 71);
+            this.checkBox1.Location = new System.Drawing.Point(128, 58);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(90, 21);
+            this.checkBox1.Size = new System.Drawing.Size(70, 17);
             this.checkBox1.TabIndex = 13;
             this.checkBox1.Text = "Use Filter";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -211,9 +224,10 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(83, 7);
+            this.linkLabel1.Location = new System.Drawing.Point(76, 6);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(35, 17);
+            this.linkLabel1.Size = new System.Drawing.Size(27, 13);
             this.linkLabel1.TabIndex = 14;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "help";
@@ -221,9 +235,9 @@
             // 
             // SteamGamePicker
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(323, 607);
+            this.ClientSize = new System.Drawing.Size(242, 493);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.randomGameBox);
@@ -239,6 +253,7 @@
             this.Controls.Add(this.steamidInput);
             this.Controls.Add(this.gamesList);
             this.Controls.Add(this.outputText);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "SteamGamePicker";
             this.Text = "SteamGamePicker";
             this.Load += new System.EventHandler(this.SteamGamePicker_Load);

@@ -1,6 +1,6 @@
 ﻿namespace SteamGamePicker
 {
-    partial class Form1
+    partial class SteamGamePicker
     {
         /// <summary>
         /// Required designer variable.
@@ -219,7 +219,7 @@
             this.linkLabel1.Text = "help";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // Form1
+            // SteamGamePicker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -239,9 +239,9 @@
             this.Controls.Add(this.steamidInput);
             this.Controls.Add(this.gamesList);
             this.Controls.Add(this.outputText);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "SteamGamePicker";
+            this.Text = "SteamGamePicker";
+            this.Load += new System.EventHandler(this.SteamGamePicker_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

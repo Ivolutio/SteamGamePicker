@@ -14,7 +14,7 @@ namespace SteamGamePicker
 {
     public partial class SteamGamePicker : Form
     {
-        public string SteamWebAPIKey = "<ENTER YOUR KEY>";
+        public string SteamWebAPIKey = "git gud";
         private ulong steamid;
 
         public SteamGamePicker()
@@ -61,10 +61,7 @@ namespace SteamGamePicker
             steamid = ulong.Parse(steamidInput.Text);
             gamesList.Items.Clear();
             outputText.Text = "Fetching.....";
-            Task.Run(async () =>
-            {
-                await RunSteamStuff();
-            });
+            RunSteamStuff().RunSynchronously();
         }
 
         private void chooseButton_Click(object sender, EventArgs e)

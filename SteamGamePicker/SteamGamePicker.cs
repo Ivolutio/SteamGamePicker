@@ -54,14 +54,14 @@ namespace SteamGamePicker
             }
         }
 
-        private void startButton_Click(object sender, EventArgs e)
+        private async void startButton_Click(object sender, EventArgs e)
         {
             if (steamidInput.TextLength != 17)
                 return;
             steamid = ulong.Parse(steamidInput.Text);
             gamesList.Items.Clear();
             outputText.Text = "Fetching.....";
-            RunSteamStuff().RunSynchronously();
+            await RunSteamStuff();
         }
 
         private void chooseButton_Click(object sender, EventArgs e)

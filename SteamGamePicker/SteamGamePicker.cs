@@ -1,10 +1,13 @@
-﻿using SteamWebAPI2.Interfaces;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using SteamWebAPI2.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,34 +17,36 @@ namespace SteamGamePicker
 {
     public partial class SteamGamePicker : Form
     {
-        public string SteamWebAPIKey = "git gud";
-        private ulong steamid;
+        private GamePickerConfig config;
 
         public SteamGamePicker()
         {
+            // We're checking config before the form loads ;)
+            // Preload Config
+            if (!File.Exists("config.json"))
+                new FirstBoot().ShowDialog();
+            config = JObject.Parse(File.ReadAllText("config.json")).ToObject<GamePickerConfig>();
             InitializeComponent();
         }
 
         private void SteamGamePicker_Load(object sender, EventArgs e)
         {
-            LinkLabel.Link link = new LinkLabel.Link();
-            link.LinkData = "https://steamidfinder.com/";
-            linkLabel1.Links.Add(link);
+            steamidInput.Text = config.UserId.ToString();
         }
 
         private async Task RunSteamStuff()
         {
             // this will map to the ISteamUser endpoint
-            var steamInterface = new SteamUser(SteamWebAPIKey);
-            var player = new PlayerService(SteamWebAPIKey);
+            var steamInterface = new SteamUser(config.ApiKey);
+            var player = new PlayerService(config.ApiKey);
             TimeSpanConverter converter = new TimeSpanConverter();
 
-            var playerSummaryResponse = await steamInterface.GetPlayerSummaryAsync(steamid);
+            var playerSummaryResponse = await steamInterface.GetPlayerSummaryAsync(ulong.Parse(steamidInput.Text));
             var playerSummaryData = playerSummaryResponse.Data;
             outputText.Text = playerSummaryData.Nickname;
 
             var timespan = converter.ConvertFromString(hourInput.Text + ":" + minuteInput.Text + ":" + secondInput.Text);
-            var ownedgames = await player.GetOwnedGamesAsync(steamid, true, false);
+            var ownedgames = await player.GetOwnedGamesAsync(config.UserId, true, false);
             var gamesdata = ownedgames.Data;
             var games = gamesdata.OwnedGames;
 
@@ -58,7 +63,7 @@ namespace SteamGamePicker
         {
             if (steamidInput.TextLength != 17)
                 return;
-            steamid = ulong.Parse(steamidInput.Text);
+            config.UserId = ulong.Parse(steamidInput.Text);
             gamesList.Items.Clear();
             outputText.Text = "Fetching.....";
             await RunSteamStuff();
@@ -72,21 +77,40 @@ namespace SteamGamePicker
                 Random random = new Random();
                 int game = random.Next(0, count);
                 string gamename = gamesList.Items[game].ToString();
+                gamesList.SelectedIndex = game;
                 randomGameBox.Text = gamename;
             }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            hourInput.Enabled = !hourInput.Enabled;
-            minuteInput.Enabled = !minuteInput.Enabled;
-            secondInput.Enabled = !secondInput.Enabled;
+            hourInput.Enabled = checkBox1.Checked;
+            minuteInput.Enabled = checkBox1.Checked;
+            secondInput.Enabled = checkBox1.Checked;
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void steamIDFinderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Send the URL to the operating system.
-            Process.Start(e.Link.LinkData as string);
+            Process.Start("https://steamidfinder.com/");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            steamidInput.Text = config.UserId.ToString();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new FirstBoot().ShowDialog();
+            config = JObject.Parse(File.ReadAllText("config.json")).ToObject<GamePickerConfig>();
+            steamidInput.Text = config.UserId.ToString();
+            this.Show();
+        }
+
+        private void steamDeveloperToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://steamcommunity.com/dev/apikey");
         }
     }
 }

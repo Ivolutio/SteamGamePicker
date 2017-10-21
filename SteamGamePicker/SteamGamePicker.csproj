@@ -57,6 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FirstBoot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FirstBoot.Designer.cs">
+      <DependentUpon>FirstBoot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GamePickerConfig.cs" />
     <Compile Include="SteamGamePicker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FirstBoot.resx">
+      <DependentUpon>FirstBoot.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SteamGamePicker.resx">
       <DependentUpon>SteamGamePicker.cs</DependentUpon>
     </EmbeddedResource>

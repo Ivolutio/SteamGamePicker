@@ -12,17 +12,17 @@ using System.Windows.Forms;
 
 namespace SteamGamePicker
 {
-    public partial class Form1 : Form
+    public partial class SteamGamePicker : Form
     {
         public string SteamWebAPIKey = "<ENTER YOUR KEY>";
         private ulong steamid;
 
-        public Form1()
+        public SteamGamePicker()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void SteamGamePicker_Load(object sender, EventArgs e)
         {
             LinkLabel.Link link = new LinkLabel.Link();
             link.LinkData = "https://steamidfinder.com/";

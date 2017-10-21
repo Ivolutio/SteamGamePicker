@@ -61,7 +61,10 @@ namespace SteamGamePicker
             steamid = ulong.Parse(steamidInput.Text);
             gamesList.Items.Clear();
             outputText.Text = "Fetching.....";
-            RunSteamStuff();
+            Task.Run(async () =>
+            {
+                await RunSteamStuff();
+            });
         }
 
         private void chooseButton_Click(object sender, EventArgs e)

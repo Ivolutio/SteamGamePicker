@@ -52,13 +52,14 @@
             this.steamIDFinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.steamDeveloperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // outputText
             // 
             this.outputText.AutoSize = true;
-            this.outputText.Location = new System.Drawing.Point(11, 94);
+            this.outputText.Location = new System.Drawing.Point(11, 115);
             this.outputText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.outputText.Name = "outputText";
             this.outputText.Size = new System.Drawing.Size(48, 13);
@@ -68,10 +69,10 @@
             // gamesList
             // 
             this.gamesList.FormattingEnabled = true;
-            this.gamesList.Location = new System.Drawing.Point(9, 109);
+            this.gamesList.Location = new System.Drawing.Point(9, 135);
             this.gamesList.Margin = new System.Windows.Forms.Padding(2);
             this.gamesList.Name = "gamesList";
-            this.gamesList.Size = new System.Drawing.Size(224, 290);
+            this.gamesList.Size = new System.Drawing.Size(224, 264);
             this.gamesList.TabIndex = 1;
             // 
             // steamidInput
@@ -155,10 +156,10 @@
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(9, 73);
+            this.startButton.Location = new System.Drawing.Point(11, 94);
             this.startButton.Margin = new System.Windows.Forms.Padding(2);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(224, 19);
+            this.startButton.Size = new System.Drawing.Size(222, 19);
             this.startButton.TabIndex = 10;
             this.startButton.Text = "Get Games";
             this.startButton.UseVisualStyleBackColor = true;
@@ -190,12 +191,12 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(185, 52);
+            this.checkBox1.Location = new System.Drawing.Point(14, 73);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(48, 17);
+            this.checkBox1.Size = new System.Drawing.Size(96, 17);
             this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "Filter";
+            this.checkBox1.Text = "Use Time Filter";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -278,11 +279,22 @@
             this.steamDeveloperToolStripMenuItem.Text = "Get API Key";
             this.steamDeveloperToolStripMenuItem.Click += new System.EventHandler(this.steamDeveloperToolStripMenuItem_Click);
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(116, 73);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(86, 17);
+            this.checkBox2.TabIndex = 17;
+            this.checkBox2.Text = "Output to file";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // SteamGamePicker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(242, 475);
+            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.randomGameBox);
@@ -338,6 +350,7 @@
         private System.Windows.Forms.ToolStripMenuItem steamIDFinderToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem steamDeveloperToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
 

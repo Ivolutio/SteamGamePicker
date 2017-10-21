@@ -1,5 +1,6 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+﻿using Steam.Models.SteamCommunity;
 using SteamWebAPI2.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,9 @@ namespace SteamGamePicker
     public partial class SteamGamePicker : Form
     {
         private GamePickerConfig config;
+        private ulong steamid;
+        private List<OwnedGameModel> games = new List<OwnedGameModel>();
+        private TimeSpan timespan;
 
         public SteamGamePicker()
         {
@@ -44,19 +48,29 @@ namespace SteamGamePicker
             var playerSummaryResponse = await steamInterface.GetPlayerSummaryAsync(ulong.Parse(steamidInput.Text));
             var playerSummaryData = playerSummaryResponse.Data;
             outputText.Text = playerSummaryData.Nickname;
-
-            var timespan = converter.ConvertFromString(hourInput.Text + ":" + minuteInput.Text + ":" + secondInput.Text);
+            
+            timespan = (TimeSpan)converter.ConvertFromString(hourInput.Text + ":" + minuteInput.Text + ":" + secondInput.Text);
             var ownedgames = await player.GetOwnedGamesAsync(config.UserId, true, false);
             var gamesdata = ownedgames.Data;
-            var games = gamesdata.OwnedGames;
+            games = gamesdata.OwnedGames.ToList();
+            DisplayGameList(games);
+          
+        }
 
-            foreach(var game in games)
+        private void DisplayGameList(List<OwnedGameModel> games)
+        {
+            gamesList.Clear();
+            gamesList.Columns.Add("Name");
+            gamesList.Columns.Add("Played Time Forever");
+
+            foreach (var game in games)
             {
                 if (!checkBox1.Checked || game.PlaytimeForever.CompareTo(timespan) <= 0)
                 {
-                    gamesList.Items.Add(game.PlaytimeForever + " | " + game.Name);
+                    gamesList.Items.Add(new ListViewItem(new string[] { game.Name, game.PlaytimeForever.ToString() }));
                 }
             }
+            gamesList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private async void startButton_Click(object sender, EventArgs e)
@@ -76,8 +90,8 @@ namespace SteamGamePicker
             {
                 Random random = new Random();
                 int game = random.Next(0, count);
-                string gamename = gamesList.Items[game].ToString();
-                gamesList.SelectedIndex = game;
+                string gamename = gamesList.Items[game].Text;
+                //gamesList.SelectedIndex = game;
                 randomGameBox.Text = gamename;
             }
         }
@@ -111,6 +125,30 @@ namespace SteamGamePicker
         private void steamDeveloperToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("http://steamcommunity.com/dev/apikey");
+        }
+        
+        private void btnName_Click(object sender, EventArgs e)
+        {
+            games = games.OrderBy(x => x.Name).ToList();
+            DisplayGameList(games);
+        }
+
+        private void btnTime_Click(object sender, EventArgs e)
+        {
+            games = games.OrderBy(x => x.PlaytimeForever).ToList();
+            DisplayGameList(games);
+        }
+
+        private void btnNameDesc_Click(object sender, EventArgs e)
+        {
+            games = games.OrderByDescending(x => x.Name).ToList();
+            DisplayGameList(games);
+        }
+
+        private void btnTimeDesc_Click(object sender, EventArgs e)
+        {
+            games = games.OrderByDescending(x => x.PlaytimeForever).ToList();
+            DisplayGameList(games);
         }
     }
 }

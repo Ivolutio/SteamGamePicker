@@ -51,7 +51,7 @@ namespace SteamGamePicker
             outputText.Text = playerSummaryData.Nickname;
             
             timespan = (TimeSpan)converter.ConvertFromString(hourInput.Text + ":" + minuteInput.Text + ":" + secondInput.Text);
-            var ownedgames = await player.GetOwnedGamesAsync(config.UserId, true, false);
+            var ownedgames = await player.GetOwnedGamesAsync(config.UserId, includeAppInfo: true, includeFreeGames: cb_freeGames.Checked);
             var gamesdata = ownedgames.Data;
             games = gamesdata.OwnedGames.ToList();
             if (radioSortNameA.Checked)

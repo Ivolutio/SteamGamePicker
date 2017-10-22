@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.outputText = new System.Windows.Forms.Label();
-            this.gamesList = new System.Windows.Forms.ListBox();
             this.steamidInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,6 +53,12 @@
             this.steamDeveloperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.gamesList = new System.Windows.Forms.ListView();
+            this.btnSort = new System.Windows.Forms.Button();
+            this.btnTime = new System.Windows.Forms.Button();
+            this.btnNameDesc = new System.Windows.Forms.Button();
+            this.btnTimeDesc = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // outputText
@@ -68,6 +73,7 @@
             // 
             // gamesList
             // 
+            this.gamesList.Location = new System.Drawing.Point(9, 109);
             this.gamesList.FormattingEnabled = true;
             this.gamesList.Location = new System.Drawing.Point(9, 135);
             this.gamesList.Margin = new System.Windows.Forms.Padding(2);
@@ -169,6 +175,7 @@
             // 
             this.chooseButton.Location = new System.Drawing.Point(7, 403);
             this.chooseButton.Margin = new System.Windows.Forms.Padding(2);
+            this.chooseButton.Location = new System.Drawing.Point(12, 517);
             this.chooseButton.Name = "chooseButton";
             this.chooseButton.Size = new System.Drawing.Size(224, 39);
             this.chooseButton.TabIndex = 11;
@@ -181,6 +188,7 @@
             this.randomGameBox.BackColor = System.Drawing.SystemColors.Window;
             this.randomGameBox.Location = new System.Drawing.Point(9, 446);
             this.randomGameBox.Margin = new System.Windows.Forms.Padding(2);
+            this.randomGameBox.Location = new System.Drawing.Point(12, 571);
             this.randomGameBox.Name = "randomGameBox";
             this.randomGameBox.ReadOnly = true;
             this.randomGameBox.Size = new System.Drawing.Size(224, 20);
@@ -279,6 +287,56 @@
             this.steamDeveloperToolStripMenuItem.Text = "Get API Key";
             this.steamDeveloperToolStripMenuItem.Click += new System.EventHandler(this.steamDeveloperToolStripMenuItem_Click);
             // 
+
+            // gamesList
+            // 
+            this.gamesList.Location = new System.Drawing.Point(12, 246);
+            this.gamesList.Name = "gamesList";
+            this.gamesList.Size = new System.Drawing.Size(416, 265);
+            this.gamesList.TabIndex = 15;
+            this.gamesList.UseCompatibleStateImageBehavior = false;
+            this.gamesList.View = System.Windows.Forms.View.Details;
+            // 
+            // btnSort
+            // 
+            this.btnSort.Location = new System.Drawing.Point(15, 154);
+            this.btnSort.Name = "btnSort";
+            this.btnSort.Size = new System.Drawing.Size(126, 40);
+            this.btnSort.TabIndex = 16;
+            this.btnSort.Text = "Sort Name";
+            this.btnSort.UseVisualStyleBackColor = true;
+            this.btnSort.Click += new System.EventHandler(this.btnName_Click);
+            // 
+            // btnTime
+            // 
+            this.btnTime.Location = new System.Drawing.Point(147, 154);
+            this.btnTime.Name = "btnTime";
+            this.btnTime.Size = new System.Drawing.Size(133, 40);
+            this.btnTime.TabIndex = 17;
+            this.btnTime.Text = "Sort Time";
+            this.btnTime.UseVisualStyleBackColor = true;
+            this.btnTime.Click += new System.EventHandler(this.btnTime_Click);
+            // 
+            // btnNameDesc
+            // 
+            this.btnNameDesc.Location = new System.Drawing.Point(15, 200);
+            this.btnNameDesc.Name = "btnNameDesc";
+            this.btnNameDesc.Size = new System.Drawing.Size(126, 40);
+            this.btnNameDesc.TabIndex = 18;
+            this.btnNameDesc.Text = "Sort Name Desc";
+            this.btnNameDesc.UseVisualStyleBackColor = true;
+            this.btnNameDesc.Click += new System.EventHandler(this.btnNameDesc_Click);
+            // 
+            // btnTimeDesc
+            // 
+            this.btnTimeDesc.Location = new System.Drawing.Point(147, 200);
+            this.btnTimeDesc.Name = "btnTimeDesc";
+            this.btnTimeDesc.Size = new System.Drawing.Size(133, 40);
+            this.btnTimeDesc.TabIndex = 19;
+            this.btnTimeDesc.Text = "Sort Time Desc";
+            this.btnTimeDesc.UseVisualStyleBackColor = true;
+            this.btnTimeDesc.Click += new System.EventHandler(this.btnTimeDesc_Click);
+            //
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
@@ -296,6 +354,13 @@
             this.ClientSize = new System.Drawing.Size(242, 475);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(455, 609);
+            this.Controls.Add(this.btnTimeDesc);
+            this.Controls.Add(this.btnNameDesc);
+            this.Controls.Add(this.btnTime);
+            this.Controls.Add(this.btnSort);
+            this.Controls.Add(this.gamesList);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.randomGameBox);
             this.Controls.Add(this.chooseButton);
@@ -308,7 +373,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.steamidInput);
-            this.Controls.Add(this.gamesList);
             this.Controls.Add(this.outputText);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -327,7 +391,6 @@
         #endregion
 
         private System.Windows.Forms.Label outputText;
-        private System.Windows.Forms.ListBox gamesList;
         private System.Windows.Forms.TextBox steamidInput;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -350,7 +413,14 @@
         private System.Windows.Forms.ToolStripMenuItem steamIDFinderToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem steamDeveloperToolStripMenuItem;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.ListView gamesList;
+        private System.Windows.Forms.Button btnSort;
+        private System.Windows.Forms.Button btnTime;
+        private System.Windows.Forms.Button btnNameDesc;
+        private System.Windows.Forms.Button btnTimeDesc;
         private System.Windows.Forms.CheckBox checkBox2;
+
     }
 }
 

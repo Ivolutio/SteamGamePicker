@@ -26,6 +26,7 @@ namespace SteamGamePicker
             if (!File.Exists("config.json"))
                 new FirstBoot().ShowDialog();
             config = JObject.Parse(File.ReadAllText("config.json")).ToObject<GamePickerConfig>();
+            File.Create("game.txt").Close();
             InitializeComponent();
         }
 
@@ -79,6 +80,12 @@ namespace SteamGamePicker
                 string gamename = gamesList.Items[game].ToString();
                 gamesList.SelectedIndex = game;
                 randomGameBox.Text = gamename;
+                if (checkBox2.Enabled)
+                {
+                    if(!File.Exists("game.txt"))
+                        File.Create("game.txt").Close();
+                    File.WriteAllText("game.txt", gamename.Substring(gamename.IndexOf('|') + 1));
+                }
             }
         }
 

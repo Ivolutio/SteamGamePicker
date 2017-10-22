@@ -54,16 +54,32 @@ namespace SteamGamePicker
             var ownedgames = await player.GetOwnedGamesAsync(config.UserId, true, false);
             var gamesdata = ownedgames.Data;
             games = gamesdata.OwnedGames.ToList();
+            if (radioSortNameA.Checked)
+            {
+                games = games.OrderBy(x => x.Name).ToList();
+                DisplayGameList(games);
+            }
+            else if (radioSortTimeD.Checked)
+            {
+                games = games.OrderByDescending(x => x.PlaytimeForever).ToList();
+                DisplayGameList(games);
+            }
+            else if (radioSortTimeA.Checked)
+            {
+                games = games.OrderBy(x => x.PlaytimeForever).ToList();
+                DisplayGameList(games);
+            }
+            else if (radioSortNameD.Checked)
+            {
+                games = games.OrderByDescending(x => x.Name).ToList();
+                DisplayGameList(games);
+            }
             DisplayGameList(games);
-          
         }
 
         private void DisplayGameList(List<OwnedGameModel> games)
         {
-            gamesList.Clear();
-            gamesList.Columns.Add("Name");
-            gamesList.Columns.Add("Played Time Forever");
-
+            gamesList.Items.Clear();
             foreach (var game in games)
             {
                 if (!checkBox1.Checked || game.PlaytimeForever.CompareTo(timespan) <= 0)
@@ -71,7 +87,6 @@ namespace SteamGamePicker
                     gamesList.Items.Add(new ListViewItem(new string[] { game.Name, game.PlaytimeForever.ToString() }));
                 }
             }
-            gamesList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private async void startButton_Click(object sender, EventArgs e)
@@ -92,7 +107,10 @@ namespace SteamGamePicker
                 Random random = new Random();
                 int game = random.Next(0, count);
                 string gamename = gamesList.Items[game].Text;
-                //gamesList.SelectedIndex = game;
+                gamesList.Select();
+                int index = gamesList.Items.IndexOf(gamesList.Items[game]);
+                gamesList.Items[index].Selected = true;
+                gamesList.Items[index].Focused = true;
                 randomGameBox.Text = gamename;
                 if (checkBox2.Enabled)
                 {
@@ -133,29 +151,41 @@ namespace SteamGamePicker
         {
             Process.Start("http://steamcommunity.com/dev/apikey");
         }
-        
-        private void btnName_Click(object sender, EventArgs e)
+
+        private void radioSortNameA_CheckedChanged(object sender, EventArgs e)
         {
-            games = games.OrderBy(x => x.Name).ToList();
-            DisplayGameList(games);
+            if (radioSortNameA.Checked)
+            {
+                games = games.OrderBy(x => x.Name).ToList();
+                DisplayGameList(games);
+            }
         }
 
-        private void btnTime_Click(object sender, EventArgs e)
+        private void radioSortTimeD_CheckedChanged(object sender, EventArgs e)
         {
-            games = games.OrderBy(x => x.PlaytimeForever).ToList();
-            DisplayGameList(games);
+            if (radioSortTimeD.Checked)
+            {
+                games = games.OrderByDescending(x => x.PlaytimeForever).ToList();
+                DisplayGameList(games);
+            }
         }
 
-        private void btnNameDesc_Click(object sender, EventArgs e)
+        private void radioSortTimeA_CheckedChanged(object sender, EventArgs e)
         {
-            games = games.OrderByDescending(x => x.Name).ToList();
-            DisplayGameList(games);
+            if (radioSortTimeA.Checked)
+            {
+                games = games.OrderBy(x => x.PlaytimeForever).ToList();
+                DisplayGameList(games);
+            }
         }
 
-        private void btnTimeDesc_Click(object sender, EventArgs e)
+        private void radioSortNameD_CheckedChanged(object sender, EventArgs e)
         {
-            games = games.OrderByDescending(x => x.PlaytimeForever).ToList();
-            DisplayGameList(games);
+            if (radioSortNameD.Checked)
+            {
+                games = games.OrderByDescending(x => x.Name).ToList();
+                DisplayGameList(games);
+            }
         }
     }
 }

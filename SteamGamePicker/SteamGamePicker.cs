@@ -111,6 +111,7 @@ namespace SteamGamePicker
                 int index = gamesList.Items.IndexOf(gamesList.Items[game]);
                 gamesList.Items[index].Selected = true;
                 gamesList.Items[index].Focused = true;
+                gamesList.EnsureVisible(index);
                 randomGameBox.Text = gamename;
                 if (checkBox2.Enabled)
                 {

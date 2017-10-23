@@ -49,7 +49,7 @@ namespace SteamGamePicker
             try
             {
                 cfg.UserId = ulong.Parse(textBox2.Text);
-            }catch(Exception ex)
+            }catch(Exception)
             {
                 MessageBox.Show("Failed topare your ID! please make sure it is a valid Steam ID64 (ulong)");
                 return;

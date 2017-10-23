@@ -19,9 +19,9 @@ namespace SteamGamePicker
     public partial class SteamGamePicker : Form
     {
         private GamePickerConfig config;
-        private ulong steamid;
         private List<OwnedGameModel> games = new List<OwnedGameModel>();
         private TimeSpan timespan;
+        private int OGIndex;
 
         public SteamGamePicker()
         {
@@ -54,25 +54,20 @@ namespace SteamGamePicker
             var ownedgames = await player.GetOwnedGamesAsync(config.UserId, includeAppInfo: true, includeFreeGames: cb_freeGames.Checked);
             var gamesdata = ownedgames.Data;
             games = gamesdata.OwnedGames.ToList();
-            if (radioSortNameA.Checked)
+            switch (comboBox1.SelectedIndex)
             {
-                games = games.OrderBy(x => x.Name).ToList();
-                DisplayGameList(games);
-            }
-            else if (radioSortTimeD.Checked)
-            {
-                games = games.OrderByDescending(x => x.PlaytimeForever).ToList();
-                DisplayGameList(games);
-            }
-            else if (radioSortTimeA.Checked)
-            {
-                games = games.OrderBy(x => x.PlaytimeForever).ToList();
-                DisplayGameList(games);
-            }
-            else if (radioSortNameD.Checked)
-            {
-                games = games.OrderByDescending(x => x.Name).ToList();
-                DisplayGameList(games);
+                case 0:
+                    games = games.OrderBy(x => x.Name).ToList();
+                    break;
+                case 1:
+                    games = games.OrderByDescending(x => x.Name).ToList();
+                    break;
+                case 2:
+                    games = games.OrderBy(x => x.PlaytimeForever).ToList();
+                    break;
+                case 3:
+                    games = games.OrderByDescending(x => x.PlaytimeForever).ToList();
+                    break;
             }
             DisplayGameList(games);
         }
@@ -109,6 +104,9 @@ namespace SteamGamePicker
                 string gamename = gamesList.Items[game].Text;
                 gamesList.Select();
                 int index = gamesList.Items.IndexOf(gamesList.Items[game]);
+                gamesList.Items[OGIndex].Selected = false;
+                gamesList.Items[OGIndex].Focused = false;
+                OGIndex = index;
                 gamesList.Items[index].Selected = true;
                 gamesList.Items[index].Focused = true;
                 gamesList.EnsureVisible(index);
@@ -153,40 +151,37 @@ namespace SteamGamePicker
             Process.Start("http://steamcommunity.com/dev/apikey");
         }
 
-        private void radioSortNameA_CheckedChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (radioSortNameA.Checked)
+            switch (comboBox1.SelectedIndex)
             {
-                games = games.OrderBy(x => x.Name).ToList();
-                DisplayGameList(games);
+                case 0:
+                    games = games.OrderBy(x => x.Name).ToList();
+                    break;
+                case 1:
+                    games = games.OrderByDescending(x => x.Name).ToList();
+                    break;
+                case 2:
+                    games = games.OrderBy(x => x.PlaytimeForever).ToList();
+                    break;
+                case 3:
+                    games = games.OrderByDescending(x => x.PlaytimeForever).ToList();
+                    break;
             }
+            DisplayGameList(games);
         }
 
-        private void radioSortTimeD_CheckedChanged(object sender, EventArgs e)
+        private void gamesList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (radioSortTimeD.Checked)
+            foreach(ListViewItem i in gamesList.Items)
             {
-                games = games.OrderByDescending(x => x.PlaytimeForever).ToList();
-                DisplayGameList(games);
+                i.Selected = false;
+                i.Focused = false;
             }
-        }
-
-        private void radioSortTimeA_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioSortTimeA.Checked)
-            {
-                games = games.OrderBy(x => x.PlaytimeForever).ToList();
-                DisplayGameList(games);
-            }
-        }
-
-        private void radioSortNameD_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioSortNameD.Checked)
-            {
-                games = games.OrderByDescending(x => x.Name).ToList();
-                DisplayGameList(games);
-            }
+            gamesList.Select();
+            gamesList.Items[OGIndex].Selected = true;
+            gamesList.Items[OGIndex].Focused = true;
+            gamesList.EnsureVisible(OGIndex);
         }
     }
 }

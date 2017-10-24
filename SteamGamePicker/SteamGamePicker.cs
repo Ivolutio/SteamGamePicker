@@ -37,6 +37,7 @@ namespace SteamGamePicker
         private void SteamGamePicker_Load(object sender, EventArgs e)
         {
             steamidInput.Text = config.UserId.ToString();
+            comboBox1.SelectedIndex = 0;
         }
 
         private async Task RunSteamStuff()
